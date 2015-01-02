@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Matthew M. Conley SimonTek@gmail.com May 02, 2014
-# v1.0.2 Jan 02, 2015
+# v1.0.3 Jan 02, 2015
 ARCH=`uname -i`
 
 if [ -f /etc/debian_version ]; then
