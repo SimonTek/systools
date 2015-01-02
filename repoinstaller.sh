@@ -132,13 +132,13 @@ echo "RHEL 7 is installed"
 	echo "EPEL is already installed"
 	else
 	rpm --import http://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-	rpm -Uvh http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm
+	rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 	fi
 	if [ -f /etc/yum.repos.d/elrepo.repo ]; then
 	echo "ELrepo is already installed"
 	else
 	rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-	rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-1.el7.elrepo.noarch.rpm
+	rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 	fi
 	if [ -f /etc/yum.repos.d/puppet.repo ]; then
 	echo "Puppet is already installed"
