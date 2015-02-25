@@ -61,7 +61,7 @@ yum update -y
 	echo "Atomic is installed"
 	else
 	#wget -q -O - http://www.atomicorp.com/installers/atomic |sh
-	rpm -Uvh http://www3.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-19.el6.art.noarch.rpm
+	rpm -Uvh https://www6.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-19.el6.art.noarch.rpm
 	fi
 
 else
