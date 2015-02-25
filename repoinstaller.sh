@@ -159,3 +159,8 @@ else
 echo "RHEL 7 is not installed"
 fi
 
+
+
+# wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+# wget http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+# 
