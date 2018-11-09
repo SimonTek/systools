@@ -60,7 +60,9 @@ echo "RHEL 6 is installed"
 	echo "Atomic is installed"
 	else
 	#wget -q -O - http://www.atomicorp.com/installers/atomic |sh
-	rpm -Uvh https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-21.el6.art.noarch.rpm
+	epm -Uvh https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-21.el6.art.noarch.rpm
+	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+
 	fi
 
 else
@@ -108,7 +110,7 @@ echo "RHEL 7 is installed"
 else
 echo "RHEL 7 is not installed"
 fi
-	if rpm -qa |grep wget; then
+	if rpm -qa |grep -q wget; then
 	echo "wget installed"
 	else
 	yum install -y wget
