@@ -16,7 +16,7 @@ fi
 
 if grep -i "release 6." /etc/redhat-release; then
 echo "RHEL 6 is installed"
-DIST="el6"
+#DIST="el6"
 	if [ -f /etc/yum.repos.d/epel.repo ]; then
 	echo "EPEL is already installed"
 	else
@@ -50,19 +50,17 @@ DIST="el6"
 	rpm --import http://yum.puppetlabs.com/RPM-GPG-KEY-reductive
 	rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
 	fi
-yum update -y
-	if [ -f /etc/yum.repos.d/remi.repo ]; then
-	echo "Remi is already installed"
-	else
-	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
-	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
-	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
-
+#	if [ -f /etc/yum.repos.d/remi.repo ]; then
+#	echo "Remi is already installed"
+#	else
+#	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
+#	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+#
 	if [ -f /etc/yum.repo.d/atomic.repo ]; then
 	echo "Atomic is installed"
 	else
 	#wget -q -O - http://www.atomicorp.com/installers/atomic |sh
-	rpm -Uvh https://updates.atomicorp.com/channels/atomic/centos/7/x86_64/RPMS/atomic-release-1.0-21.el7.art.noarch.rpm
+	rpm -Uvh https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-21.el6.art.noarch.rpm
 	fi
 
 else
@@ -92,7 +90,7 @@ echo "RHEL 7 is installed"
 	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 	rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi2018
 	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-
+	fi
 	if [ -f /etc/yum.repos.d/puppet.repo ]; then
 	echo "Puppet is already installed"
 	else
@@ -104,9 +102,8 @@ echo "RHEL 7 is installed"
 	if [ -f /etc/yum.repo.d/atomic.repo ]; then
 	echo "Atomic is installed"
 	else
-	rpm -Uvh https://www6.atomicorp.com/channels/atomic/redhat/7/x86_64/RPMS/atomic-release-1.0-19.el7.art.noarch.rpm	
-
-fi
+	rpm -Uvh https://www6.atomicorp.com/channels/atomic/redhat/7/x86_64/RPMS/atomic-release-1.0-21.el7.art.noarch.rpm	
+	fi
 
 else
 echo "RHEL 7 is not installed"
@@ -116,4 +113,3 @@ fi
 	else
 	yum install -y wget
 	fi
-# 
