@@ -60,7 +60,7 @@ echo "RHEL 6 is installed"
 	echo "Atomic is installed"
 	else
 	#wget -q -O - http://www.atomicorp.com/installers/atomic |sh
-	epm -Uvh https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-21.el6.art.noarch.rpm
+	rpm -Uvh https://updates.atomicorp.com/channels/atomic/centos/6/x86_64/RPMS/atomic-release-1.0-21.el6.art.noarch.rpm
 	rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 
 	fi
