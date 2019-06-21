@@ -14,7 +14,7 @@ read PORT
 	cp /etc/syslog-ng/syslog-ng.conf /root/syslog-ng.conf.bak
 		if grep "^destination loghost"  /etc/syslog-ng/syslog-ng.conf; then
 		echo "Destination Loghost already exists"
-			if grep "134.68.240.34" /etc/syslog-ng/syslog-ng.conf; then
+			if grep "127.0.0.1" /etc/syslog-ng/syslog-ng.conf; then
 			echo "Configured as needed. Nothing else to do"
 			else
 			echo "Adding IP address to range"
