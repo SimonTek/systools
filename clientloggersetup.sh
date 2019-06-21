@@ -9,26 +9,30 @@
 # This script is for setting up remote logs for clients to the server. This script supports both rsyslog and syslog-ng
 echo "Which port have you chosen to send the files to the Log Server?:"
 read PORT
+
+echo "Which IP Address is your log server?:"
+read IP
+
 	if [ -f /etc/syslog-ng/syslog-ng.conf ]; then
 	echo "Syslog-ng has been found"
 	cp /etc/syslog-ng/syslog-ng.conf /root/syslog-ng.conf.bak
 		if grep "^destination loghost"  /etc/syslog-ng/syslog-ng.conf; then
 		echo "Destination Loghost already exists"
-			if grep "127.0.0.1" /etc/syslog-ng/syslog-ng.conf; then
+			if grep "$IP" /etc/syslog-ng/syslog-ng.conf; then
 			echo "Configured as needed. Nothing else to do"
 			else
 			echo "Adding IP address to range"
-			sed -i "s@destination loghost.*@destination loghost { tcp("127.0.0.1" port($PORT)); };@g"  /etc/syslog-ng/syslog-ng.conf
+			sed -i "s@destination loghost.*@destination loghost { tcp("$IP" port($PORT)); };@g"  /etc/syslog-ng/syslog-ng.conf
 			fi
 		else
 		echo "Destination loghost not found, adding parameters now"
-		echo "destination loghost { tcp("127.0.0.1" port($PORT)); };" >> /etc/syslog-ng/syslog-ng.conf
+		echo "destination loghost { tcp("$IP" port($PORT)); };" >> /etc/syslog-ng/syslog-ng.conf
 		echo 'log { source(s_sys); destination(loghost); };' >>  /etc/syslog-ng/syslog-ng.conf
 		cat /etc/syslog-ng/syslog-ng.conf
 			if [ -f /etc/redhat-release ]; then
-			chkconfig syslog-ng on
+			systemctl enable syslog-ng
 			fi
-		/etc/init.d/syslog-ng restart
+		systemctl restart syslog-ng
 		fi
 	else
 	echo "syslog-ng not found"
@@ -36,15 +40,16 @@ read PORT
 	if [ -f /etc/rsyslog.conf ]; then
 	echo "Rsyslog has been found"
 	cp /etc/rsyslog.conf /root/rsyslog.conf.bak
-		if grep '*.* @@' /etc/rsyslog.conf|grep -v '^#'; then
+		if grep  $IP /etc/rsyslog.conf|grep -v '^#'; then
 		echo "rsyslog has been setup"
 		else
 		echo "ryslog hasn't been setup"
-		echo "*.* @@127.0.0.1:$PORT" >> /etc/rsyslog.conf
+		echo "*.* @@$IP:$PORT" >> /etc/rsyslog.conf
 			if [ -f /etc/redhat-release ]; then
 			chkconfig rsyslog on
-			fi
-		/etc/init.d/rsyslog restart
+			systemctl enable rsyslog	
+		fi
+		systemctl restart rsyslog
 		fi
 	else
 	echo "rsyslog not found"		
